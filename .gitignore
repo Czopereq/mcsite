@@ -2,3 +2,6 @@
 node_modules/
 
 dbcon.php
+.env
+.env.*
+health.php
