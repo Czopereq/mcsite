@@ -6,7 +6,6 @@ const { validateForm } = require('./formValidator');
 
 describe('Integracja z formularzem HTML', () => {
     beforeEach(() => {
-        // Przygotowanie DOM formularza przed każdym testem
         document.body.innerHTML = `
       <form id="contactForm">
         <input id="name" />
@@ -18,7 +17,6 @@ describe('Integracja z formularzem HTML', () => {
     });
 
     it('blokuje wysyłkę przy niepoprawnych danych', () => {
-        // Ustawienie niepoprawnych danych
         document.getElementById('name').value = '';
         document.getElementById('email').value = 'zlymail';
         document.getElementById('message').value = 'krótko';
@@ -30,7 +28,6 @@ describe('Integracja z formularzem HTML', () => {
     });
 
     it('pozwala na wysyłkę przy poprawnych danych', () => {
-        // Ustawienie poprawnych danych
         document.getElementById('name').value = 'Jan';
         document.getElementById('email').value = 'test@mail.com';
         document.getElementById('message').value = 'To jest poprawna wiadomość.';

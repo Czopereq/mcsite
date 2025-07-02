@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
     $message = $_POST['message'] ?? '';
-
     // Prosta walidacja danych wejściowych
     if ($name && filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($message) >= 10) {
         try {
@@ -27,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <!-- Załadowanie czcionek i stylów -->
     <script src="https://kit.fontawesome.com/e71200209d.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

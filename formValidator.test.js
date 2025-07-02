@@ -1,8 +1,4 @@
 const { validateForm } = require('./formValidator');
-
-// Testy jednostkowe funkcji validateForm
-// Sprawdzają poprawność walidacji dla różnych przypadków wejściowych
-
 describe('validateForm', () => {
     it('zwraca false dla pustego imienia', () => {
         expect(validateForm('', 'test@mail.com', 'Wiadomość testowa')).toBe(false);
