@@ -40,14 +40,15 @@ jobs:
           rm -f formValidator.js formValidator.test.js formValidator.integration.test.js
 
       - name: Upload via SFTP
-        uses: appleboy/sftp-action@v0.0.10
+        uses: AEnterprise/sftp-deploy@v2.2.2
         with:
-          host: ${{ secrets.SFTP_SERVER }}
+          server: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: 22
-          source: "./*"
-          target: "/usr/share/nginx/mc/"
+          local_path: ./
+          remote_path: /usr/share/nginx/mc/
+          sftp_only: true
 
       - name: Health check
         run: |
