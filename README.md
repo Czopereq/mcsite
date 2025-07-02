@@ -1,5 +1,12 @@
 # BorderSMP - Strona
 
+<!--
+README.md
+Dokumentacja projektu Border SMP
+- Opisuje funkcjonalności, testy, uruchamianie i strukturę strony
+- Zawiera instrukcje dla deweloperów i użytkowników
+-->
+
 ## Opis projektu
 
 Ten projekt to strona główna serwera Minecraft o nazwie **Border SMP**. Strona została stworzona w celu przedstawienia innowacyjnego pomysłu na rozgrywkę oraz przekazania najważniejszych informacji graczom.

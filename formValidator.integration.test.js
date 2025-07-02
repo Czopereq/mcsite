@@ -1,5 +1,6 @@
 /**
  * @jest-environment jsdom
+ * Testy integracyjne walidacji formularza kontaktowego w środowisku jsdom
  */
 const { validateForm } = require('./formValidator');
 

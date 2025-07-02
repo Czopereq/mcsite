@@ -1,5 +1,4 @@
 const { validateForm } = require('./formValidator');
-
 describe('validateForm', () => {
     it('zwraca false dla pustego imienia', () => {
         expect(validateForm('', 'test@mail.com', 'Wiadomość testowa')).toBe(false);
