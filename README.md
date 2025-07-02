@@ -1,4 +1,4 @@
-#1BorderSMP - Strona
+# BorderSMP - Strona
 
 ## Opis projektu
 
