@@ -1,8 +1,33 @@
 # BorderSMP - Strona
 
+<!--
+README.md
+Dokumentacja projektu Border SMP
+- Opisuje funkcjonalności, testy, uruchamianie i strukturę strony
+- Zawiera instrukcje dla deweloperów i użytkowników
+-->
+
 ## Opis projektu
 
 Ten projekt to strona główna serwera Minecraft o nazwie **Border SMP**. Strona została stworzona w celu przedstawienia innowacyjnego pomysłu na rozgrywkę oraz przekazania najważniejszych informacji graczom.
+
+## Formularz kontaktowy
+
+Dodano funkcjonalność formularza kontaktowego (`form.php`) z walidacją danych. Formularz umożliwia użytkownikom wysyłanie wiadomości bezpośrednio ze strony.
+
+## Testy
+
+Projekt zawiera testy jednostkowe i integracyjne dla walidacji formularza:
+- `formValidator.test.js` – testy jednostkowe funkcji walidującej dane formularza
+- `formValidator.integration.test.js` – testy integracyjne sprawdzające walidację na formularzu HTML
+
+Aby uruchomić testy lokalnie:
+```
+npm install
+npx jest
+```
+
+Testy uruchamiają się automatycznie na GitHub Actions po każdym pushu i pull request.
 
 ## Na czym polega serwer?
 
