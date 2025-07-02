@@ -42,17 +42,18 @@ Projekt zawiera pliki strony, które stanową informacje o serwerze Minecraft Bo
 
 Po każdym pushu i pull request na branch `main`:
 - Uruchamiane są testy i lintowanie kodu (Jest, ESLint)
-- Po pozytywnych testach pliki są automatycznie wdrażane na serwer
+- Po pozytywnych testach pliki są automatycznie wdrażane na serwer przez FTP
 - Po wdrożeniu wykonywany jest health check (`health.php`)
+- Strona jest dostępna pod adresem: https://mc.og-dcb.pl
 
 ### Zmienne środowiskowe
-- Przykład w `.env.example`
+- Przykład w `.env.example` (nie commituj swojego `.env`)
 
 ### Monitoring
 - Endpoint `health.php` zwraca `OK` i status 200
 
 ### Rollback
-- W razie niepowodzenia health check, przywróć poprzednią wersję plików na serwerze
+- W razie niepowodzenia health check, przywróć poprzednią wersję plików na serwerze (np. ręcznie lub przez backup)
 
 ### Workflow
 - Plik `.github/workflows/ci-cd.yml` automatyzuje cały proces
@@ -61,5 +62,6 @@ Po każdym pushu i pull request na branch `main`:
 
 ## Instrukcja wdrożenia
 1. Skonfiguruj sekrety w repozytorium GitHub (Settings → Secrets → Actions)
-2. Po mergu do main, pliki zostaną automatycznie wdrożone
-3. Sprawdź status health check w Actions
+2. Ustaw dane dostępowe i health check URL
+3. Po mergu do main, pliki zostaną automatycznie wdrożone
+4. Sprawdź status health check w Actions
