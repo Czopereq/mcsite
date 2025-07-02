@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/e71200209d.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Site</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo"><a href="./index.html">OG-DCB.PL</a></div>
+        <div class="navbar">
+            <ul>
+                <li><a href="./modlist.html">Lista Modów</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div class="main">
+            <h1>Mody do instalacji, aby wszystko działało!</h1>
+            <div class="mod">
+                <img src="./img/975131df603729941d6549a8e78fed1509bf0518.webp" alt="">
+                <div class="modlogo"><img src="./img/mods/simplevoicechat.webp" alt=""></div>
+                <div class="box">
+                    <br>
+                    <br>
+                    <h1>Simple Voice Chat</h1>
+                    <h3>Mod, który dodaje voice chat do minecrafta! Przy instalacji tego moda, prosiłbym o
+                        zainstalowanie dodatkowego moda znajdującego się poniżej</h3>
+
+                    <button type="button" onclick="downloadFile(String, modname='voicechat')"><i
+                            class="fa-solid fa-download"></i> Pobierz </button>
+                </div>
+            </div>
+            <div class="mod">
+                <img src="./img/cave.png" alt="">
+                <div class="modlogo"><img src="./img/mods/soundphysics.webp" alt=""></div>
+                <div class="box">
+                    <br>
+                    <br>
+                    <h1>Sound Physics Remastered</h1>
+                    <h3>Dodatek do Simple Voice Chat, który powoduje realistyczne tłumienie, pogłos oraz pochłanianie
+                        dźwięku przez otoczenie</h3>
+
+                    <button type="button" onclick="downloadFile(String, modname='sounds')"><i
+                            class="fa-solid fa-download"></i> Pobierz </button>
+                </div>
+            </div>
+            <div class="mod">
+                <img src="./img/flywheels.png" alt="">
+                <div class="modlogo"><img src="./img/mods/sodium.webp" alt=""></div>
+                <div class="box">
+                    <br>
+                    <br>
+                    <h1>Sodium</h1>
+                    <h3>Mod, który wpływa na polepszenie wydajności minecrafta, jest owiele lepszy od standardowego
+                        optifine, jeżeli chodzi o polepszenie działania gry</h3>
+
+                    <button type="button" onclick="downloadFile(String, modname='sodium')"><i
+                            class="fa-solid fa-download"></i> Pobierz </button>
+                </div>
+            </div>
+            <div class="mod">
+                <img src="./img/flywheels.png" alt="">
+                <div class="modlogo"><img src="./img/mods/lithium.png" alt=""></div>
+                <div class="box">
+                    <br>
+                    <br>
+                    <h1>Lithium</h1>
+                    <h3>Tak jak Soduim, wpływa na polepszenie wydajności minecrafta!</h3>
+
+                    <button type="button" onclick="downloadFile(String, modname='lithium')"><i
+                            class="fa-solid fa-download"></i> Pobierz </button>
+                </div>
+            </div>
+            <div class="mod">
+                <img src="./img/d382106b9a2b943d06107c31c139c77849f1a0e8.webp" alt="">
+                <div class="modlogo"><img src="./img/mods/iris.webp" alt=""></div>
+                <div class="box">
+                    <br>
+                    <br>
+                    <h1>Iris shaders</h1>
+                    <h3>Mod, który dodaje shadery do minecrafta, za pomocą skrótów klawiszowych można włączać/wyłączać
+                        shadery w trakcie gry, a także je zmieniać!</h3>
+
+                    <button type="button" onclick="downloadFile(String, modname='iris')"><i
+                            class="fa-solid fa-download"></i> Pobierz </button>
+                </div>
+            </div>
+            <div class="mod">
+                <img src="./img/flywheels.png" alt="">
+                <div class="modlogo"><img src="./img/mods/indium.webp" alt=""></div>
+                <div class="box">
+                    <br>
+                    <br>
+                    <h1>Indium</h1>
+                    <h3>Dodatek do sodiuma</h3>
+
+                    <button type="button" onclick="downloadFile(String, modname='indium')"><i
+                            class="fa-solid fa-download"></i> Pobierz </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <h1>OG-DCB.PL &copy</h1>
+    </footer>
+
+    <script>
+        function downloadFile() {
+	    console.log(modname);
+            if (modname == "voicechat") {
+                window.open("./dl/voicechat-fabric-1.20.6-2.5.15.jar");
+            } else if (modname == "sounds") {
+                window.open("./dl/sound-physics-remastered-fabric-1.20.6-1.4.3.jar");
+            } else if (modname == "sodium") {
+                window.open("./dl/sodium-fabric-0.5.8+mc1.20.6.jar");
+            } else if (modname == "lithium") {
+                window.open("./dl/lithium-fabric-mc1.20.6-0.12.6.jar");
+            } else if (modname == "iris") {
+                window.open("./dl/iris-1.7.0+mc1.20.6.jar");
+            } else if (modname == "indium") {
+                window.open("./dl/indium-1.0.31+mc1.20.6.jar");
+            }
+        }
+    </script>
+</body>
+
+</html>
