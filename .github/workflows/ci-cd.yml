@@ -1,4 +1,4 @@
-name: CI/CD PHP FTP Deploy
+name: CI/CD PHP SFTP Deploy
 
 on:
   push:
@@ -39,14 +39,15 @@ jobs:
         run: |
           rm -f formValidator.js formValidator.test.js formValidator.integration.test.js
 
-      - name: Upload via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Upload via SFTP
+        uses: appleboy/sftp-action@v0.1.7
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_TARGET_DIR }}
-          local-dir: ./
+          host: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: 22
+          source: "./*"
+          target: "/usr/share/nginx/mc/"
 
       - name: Health check
         run: |
