@@ -1,8 +1,33 @@
 # BorderSMP - Strona
 
+<!--
+README.md
+Dokumentacja projektu Border SMP
+- Opisuje funkcjonalności, testy, uruchamianie i strukturę strony
+- Zawiera instrukcje dla deweloperów i użytkowników
+-->
+
 ## Opis projektu
 
 Ten projekt to strona główna serwera Minecraft o nazwie **Border SMP**. Strona została stworzona w celu przedstawienia innowacyjnego pomysłu na rozgrywkę oraz przekazania najważniejszych informacji graczom.
+
+## Formularz kontaktowy
+
+Dodano funkcjonalność formularza kontaktowego (`form.php`) z walidacją danych. Formularz umożliwia użytkownikom wysyłanie wiadomości bezpośrednio ze strony.
+
+## Testy
+
+Projekt zawiera testy jednostkowe i integracyjne dla walidacji formularza:
+- `formValidator.test.js` – testy jednostkowe funkcji walidującej dane formularza
+- `formValidator.integration.test.js` – testy integracyjne sprawdzające walidację na formularzu HTML
+
+Aby uruchomić testy lokalnie:
+```
+npm install
+npx jest
+```
+
+Testy uruchamiają się automatycznie na GitHub Actions po każdym pushu i pull request.
 
 ## Na czym polega serwer?
 
@@ -12,3 +37,31 @@ Projekt zawiera pliki strony, które stanową informacje o serwerze Minecraft Bo
 
 1. Pobierz lub sklonuj repozytorium.
 2. Otwórz plik `index.html` w przeglądarce internetowej.
+
+## Deployment (CI/CD)
+
+Po każdym pushu i pull request na branch `main`:
+- Uruchamiane są testy i lintowanie kodu (Jest, ESLint)
+- Po pozytywnych testach pliki są automatycznie wdrażane na serwer przez FTP
+- Po wdrożeniu wykonywany jest health check (`health.php`)
+- Strona jest dostępna pod adresem: https://mc.og-dcb.pl
+
+### Zmienne środowiskowe
+- Przykład w `.env.example` (nie commituj swojego `.env`)
+
+### Monitoring
+- Endpoint `health.php` zwraca `OK` i status 200
+
+### Rollback
+- W razie niepowodzenia health check, przywróć poprzednią wersję plików na serwerze (np. ręcznie lub przez backup)
+
+### Workflow
+- Plik `.github/workflows/ci-cd.yml` automatyzuje cały proces
+
+---
+
+## Instrukcja wdrożenia
+1. Skonfiguruj sekrety w repozytorium GitHub (Settings → Secrets → Actions)
+2. Ustaw dane dostępowe i health check URL
+3. Po mergu do main, pliki zostaną automatycznie wdrożone
+4. Sprawdź status health check w Actions

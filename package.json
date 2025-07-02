@@ -1,0 +1,17 @@
+{
+    "name": "mcsite",
+    "version": "1.0.0",
+    "description": "Strona Border SMP - testy i walidacja formularza",
+    "main": "formValidator.js",
+    "scripts": {
+        "test": "jest",
+        "lint": "eslint ."
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint": "^8.57.0",
+        "jest": "^29.7.0",
+        "jest-environment-jsdom": "^30.0.2"
+    }
+}
