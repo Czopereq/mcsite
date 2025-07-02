@@ -37,3 +37,29 @@ Projekt zawiera pliki strony, które stanową informacje o serwerze Minecraft Bo
 
 1. Pobierz lub sklonuj repozytorium.
 2. Otwórz plik `index.html` w przeglądarce internetowej.
+
+## Deployment (CI/CD)
+
+Po każdym pushu i pull request na branch `main`:
+- Uruchamiane są testy i lintowanie kodu (Jest, ESLint)
+- Po pozytywnych testach pliki są automatycznie wdrażane na serwer
+- Po wdrożeniu wykonywany jest health check (`health.php`)
+
+### Zmienne środowiskowe
+- Przykład w `.env.example`
+
+### Monitoring
+- Endpoint `health.php` zwraca `OK` i status 200
+
+### Rollback
+- W razie niepowodzenia health check, przywróć poprzednią wersję plików na serwerze
+
+### Workflow
+- Plik `.github/workflows/ci-cd.yml` automatyzuje cały proces
+
+---
+
+## Instrukcja wdrożenia
+1. Skonfiguruj sekrety w repozytorium GitHub (Settings → Secrets → Actions)
+2. Po mergu do main, pliki zostaną automatycznie wdrożone
+3. Sprawdź status health check w Actions
