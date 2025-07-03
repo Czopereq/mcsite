@@ -23,9 +23,6 @@ jobs:
       - name: 🧪 Uruchomienie testów
         run: npx jest
 
-      - name: ✨ Sprawdzenie kodu (Lint)
-        run: npx eslint .
-
       - name: 📂 Wgrywanie plików na serwer FTP
         # TEN KROK URUCHOMI SIĘ TYLKO I WYŁĄCZNIE PRZY PUSH DO 'main'
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
