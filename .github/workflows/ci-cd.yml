@@ -40,14 +40,15 @@ jobs:
           rm -f formValidator.js formValidator.test.js formValidator.integration.test.js
 
       - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
           port: 21
-          local-dir: ./
           server-dir: /usr/share/nginx/mc/
+          local-dir: ./
 
       - name: Health check
         run: |
