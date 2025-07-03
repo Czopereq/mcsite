@@ -1,8 +1,5 @@
-# Nazwa Twojego workflow
 name: 🚀 Deploy website on push
 
-# Uruchamiaj workflow tylko przy push na gałąź 'main'
-# oraz przy pull requestach do 'main' (ale deploy będzie zablokowany)
 on:
   push:
     branches: [main]
@@ -13,6 +10,7 @@ jobs:
   test-and-deploy:
     name: 🧪 Test & 🎉 Deploy
     runs-on: ubuntu-latest
+
     steps:
       - name: 🚚 Pobieranie kodu
         uses: actions/checkout@v4
@@ -24,23 +22,29 @@ jobs:
         run: npx jest
 
       - name: ✨ Sprawdzenie kodu (Lint)
-        run: npx eslint 
+        run: npx eslint
 
-      - name: 📂 Wgrywanie plików na serwer FTP
-        # TEN KROK URUCHOMI SIĘ TYLKO I WYŁĄCZNIE PRZY PUSH DO 'main'
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy to Staging server
+        uses: easingthemes/ssh-deploy@main
         with:
-          server: 176.96.138.21
-          username: automatyzacjaWSB
-          password: automatyzacja
-          protocol: ftps
-          server-dir: /usr/share/nginx/mc/
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: /usr/share/nginx/mc/
+          EXCLUDE: "/dist/, /node_modules/"
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            whoami
+            ls -al
+            echo $RSYNC_STDOUT
 
       - name: ❤️ Sprawdzenie działania strony (Health Check)
-        # TEN KROK TEŻ URUCHOMI SIĘ TYLKO PRZY PUSH DO 'main'
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
           echo "Czekam 10 sekund, aż serwer odświeży pliki..."
-          sleep 10 # Czekamy 10 sekund
+          sleep 10
           curl --fail ${{ secrets.HEALTHCHECK_URL }}
