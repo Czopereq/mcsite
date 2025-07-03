@@ -1,4 +1,4 @@
-name: CI/CD PHP FTP Deploy
+name: 🚀 Deploy website on push or PR
 
 on:
   push:
@@ -7,16 +7,12 @@ on:
     branches: [main]
 
 jobs:
-  build-and-test:
+  test-and-deploy:
+    name: 🧪 Test & 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: 🚚 Get latest code
         uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
 
       - name: Install dependencies
         run: npm install
@@ -27,28 +23,14 @@ jobs:
       - name: Lint JS
         run: npx eslint . || true
 
-  deploy:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Remove test files from deploy
-        run: |
-          rm -f formValidator.js formValidator.test.js formValidator.integration.test.js
-
-      - name: FTP Deploy
+      - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          port: 21
           server-dir: /usr/share/nginx/mc/
-          local-dir: ./
 
       - name: Health check
         run: |
