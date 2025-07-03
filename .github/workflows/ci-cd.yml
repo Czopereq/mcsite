@@ -1,5 +1,8 @@
-name: 🚀 Deploy website on push or PR
+# Nazwa Twojego workflow
+name: 🚀 Deploy website on push
 
+# Uruchamiaj workflow tylko przy push na gałąź 'main'
+# oraz przy pull requestach do 'main' (ale deploy będzie zablokowany)
 on:
   push:
     branches: [main]
@@ -11,20 +14,20 @@ jobs:
     name: 🧪 Test & 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
+      - name: 🚚 Pobieranie kodu
         uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: 📦 Instalacja zależności
         run: npm install
 
-      - name: Run tests
+      - name: 🧪 Uruchomienie testów
         run: npx jest
 
-      - name: Lint JS
-        run: npx eslint . # Usunięto || true - błędy lintera powinny zatrzymać workflow
+      - name: ✨ Sprawdzenie kodu (Lint)
+        run: npx eslint .
 
-      - name: 📂 Sync files
-        # Ten krok uruchomi się TYLKO przy push do gałęzi main
+      - name: 📂 Wgrywanie plików na serwer FTP
+        # TEN KROK URUCHOMI SIĘ TYLKO I WYŁĄCZNIE PRZY PUSH DO 'main'
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -34,10 +37,10 @@ jobs:
           protocol: ftps
           server-dir: /usr/share/nginx/mc/
 
-      - name: Health check
-        # Ten krok uruchomi się TYLKO przy push do gałęzi main
+      - name: ❤️ Sprawdzenie działania strony (Health Check)
+        # TEN KROK TEŻ URUCHOMI SIĘ TYLKO PRZY PUSH DO 'main'
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
-          echo "Waiting 10 seconds for the server to update..."
-          sleep 10 # Dajemy serwerowi 10 sekund na odświeżenie
+          echo "Czekam 10 sekund, aż serwer odświeży pliki..."
+          sleep 10 # Czekamy 10 sekund
           curl --fail ${{ secrets.HEALTHCHECK_URL }}
