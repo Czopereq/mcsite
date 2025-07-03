@@ -21,9 +21,11 @@ jobs:
         run: npx jest
 
       - name: Lint JS
-        run: npx eslint . || true
+        run: npx eslint . # Usunięto || true - błędy lintera powinny zatrzymać workflow
 
       - name: 📂 Sync files
+        # Ten krok uruchomi się TYLKO przy push do gałęzi main
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -33,5 +35,9 @@ jobs:
           server-dir: /usr/share/nginx/mc/
 
       - name: Health check
+        # Ten krok uruchomi się TYLKO przy push do gałęzi main
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
+          echo "Waiting 10 seconds for the server to update..."
+          sleep 10 # Dajemy serwerowi 10 sekund na odświeżenie
           curl --fail ${{ secrets.HEALTHCHECK_URL }}
