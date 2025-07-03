@@ -4,3 +4,4 @@ node_modules/
 dbcon.php
 .env
 .env.*
+main.yml
